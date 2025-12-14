@@ -2,16 +2,18 @@ from git import Repo  # type: ignore
 from github import Github  # type: ignore
 
 from agent.config import config
+from agent.interfaces import IGitOps
 
 
-class GitOps:
-    def __init__(self):
+class GitOps(IGitOps):
+    def __init__(self) -> None:
         self.repo = Repo(".")
         self.gh = Github(config.GITHUB_TOKEN)
         self.gh_repo = self.gh.get_repo(config.REPO_NAME)
 
     def create_branch(self, branch_name: str) -> None:
-        self.repo.git.checkout("main")
+        if self.repo.active_branch.name != "main":
+            self.repo.git.checkout("main")
         self.repo.git.pull()
         branch = self.repo.create_head(branch_name)
         branch.checkout()
