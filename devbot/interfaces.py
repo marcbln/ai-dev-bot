@@ -18,6 +18,12 @@ class IFileSystem(ABC):
         raise NotImplementedError
 
 
+class IShellOps(ABC):
+    @abstractmethod
+    def execute_command(self, command: str) -> str:
+        """Execute a shell command and return stdout/stderr."""
+        raise NotImplementedError
+
 class IGitOps(ABC):
     @abstractmethod
     def create_branch(self, branch_name: str) -> None:
