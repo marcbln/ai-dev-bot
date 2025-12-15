@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from agent.interfaces import IFileSystem
+from devbot.interfaces import IFileSystem
 
 
 class FileSystemTools(IFileSystem):

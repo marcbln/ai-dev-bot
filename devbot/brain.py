@@ -4,10 +4,10 @@ from typing import Optional, Set
 
 import anthropic
 
-from agent.config import config
-from agent.git_ops import GitOps
-from agent.interfaces import IFileSystem, IGitOps
-from agent.tools import FileSystemTools
+from devbot.config import config
+from devbot.git_ops import GitOps
+from devbot.interfaces import IFileSystem, IGitOps
+from devbot.tools import FileSystemTools
 
 
 class Agent:
@@ -24,7 +24,7 @@ class Agent:
         self.files_created.clear()
         self.files_modified.clear()
         plan_content = self.tools.read_file(plan_path)
-        branch_name = f"agent/{task_name}-{int(time.time())}"
+        branch_name = f"devbot/{task_name}-{int(time.time())}"
         self.git.create_branch(branch_name)
 
         system_prompt = (

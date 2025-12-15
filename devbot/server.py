@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Request
 
-from agent.brain import Agent
+from devbot.brain import Agent
 
 app = FastAPI()
-agent = Agent()
+devbot = Agent()
 
 
 @app.post("/webhook")
@@ -16,6 +16,6 @@ async def github_webhook(request: Request) -> dict[str, str]:
             branch = data["pull_request"]["head"]["ref"]
             feedback = data["review"].get("body", "")
             print(f"Feedback received on {branch}")
-            agent.iterate_on_feedback(branch, feedback)
+            devbot.iterate_on_feedback(branch, feedback)
 
     return {"status": "ok"}
