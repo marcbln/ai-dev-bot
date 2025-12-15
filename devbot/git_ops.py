@@ -1,8 +1,8 @@
 from git import Repo  # type: ignore
 from github import Github  # type: ignore
 
-from agent.config import config
-from agent.interfaces import IGitOps
+from devbot.config import config
+from devbot.interfaces import IGitOps
 
 
 class GitOps(IGitOps):

@@ -3,8 +3,8 @@ import os
 import typer
 import uvicorn
 
-from agent.brain import Agent
-from agent.watcher import start_watching
+from devbot.brain import Agent
+from devbot.watcher import start_watching
 
 app = typer.Typer(help="DevBot Agent CLI")
 
@@ -28,7 +28,7 @@ def run(plan_path: str = typer.Argument(..., help="Path to the plan markdown fil
 @app.command()
 def server(port: int = 8000) -> None:
     """Start the webhook server."""
-    uvicorn.run("agent.server:app", host="0.0.0.0", port=port, reload=True)
+    uvicorn.run("devbot.server:app", host="0.0.0.0", port=port, reload=True)
 
 
 if __name__ == "__main__":
